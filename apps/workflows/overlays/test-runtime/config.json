@@ -1,0 +1,16 @@
+{
+  "appName": "workflows",
+  "userGivenName": "workflows",
+  "destNamespace": "test-runtime",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "apps/workflows/overlays/test-runtime",
+  "srcRepoURL": "https://github.com/danielm-codefresh/test-ingressless.git",
+  "srcTargetRevision": "",
+  "labels": {
+    "codefresh_io_entity": "component",
+    "codefresh_io_internal": "true"
+  },
+  "annotations": {
+    "argocd_argoproj_io_sync-wave": "0"
+  }
+}
