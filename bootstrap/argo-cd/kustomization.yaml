@@ -15,9 +15,6 @@ kind: Kustomization
 namespace: test-runtime
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.14
-images:
-- name: quay.io/codefresh/argocd
-  newTag: latest
 patches:
   - target:
       name: argocd-application-controller
@@ -28,5 +25,5 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/env
         value:
-          name: CACHE_LIST_SEMAPHORE_SIZE
-          value: 10
+          name: ARGOCD_CLUSTER_CACHE_LIST_SEMAPHORE
+          value: 5
