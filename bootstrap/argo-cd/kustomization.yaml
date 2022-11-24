@@ -15,3 +15,6 @@ kind: Kustomization
 namespace: test-runtime
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.14
+images:
+- name: quay.io/codefresh/argocd
+  newTag: latest
