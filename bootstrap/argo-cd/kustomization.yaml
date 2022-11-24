@@ -15,15 +15,3 @@ kind: Kustomization
 namespace: test-runtime
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=slim-runtime
-patches:
-  - target:
-      name: argocd-application-controller
-      kind: StatefulSet
-      group: apps
-      version: v1
-    patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: ARGOCD_CLUSTER_CACHE_LIST_SEMAPHORE
-          value: "1"
