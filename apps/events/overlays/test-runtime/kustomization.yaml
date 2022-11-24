@@ -3,5 +3,3 @@ kind: Kustomization
 namespace: test-runtime
 resources:
 - ../../base
-patchesStrategicMerge:
-- codefresh-eventbus.patch.yaml
