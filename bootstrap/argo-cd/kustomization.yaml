@@ -25,5 +25,5 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/env/-
         value:
-          name: ARGOCD_CLUSTER_CACHE_LIST_PAGE_SIZE
-          value: "50"
+          name: ARGOCD_CLUSTER_CACHE_LIST_SEMAPHORE
+          value: "1"
