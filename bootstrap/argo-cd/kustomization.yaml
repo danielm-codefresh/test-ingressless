@@ -18,3 +18,15 @@ resources:
 images:
 - name: quay.io/codefresh/argocd
   newTag: latest
+patches:
+  - target:
+      name: argocd-application-controller
+      kind: StatefulSet
+      group: apps
+      version: v1
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/env
+        value:
+          name: CACHE_LIST_SEMAPHORE_SIZE
+          value: 10
