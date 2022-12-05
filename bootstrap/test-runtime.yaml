@@ -1,0 +1,54 @@
+apiVersion: v1
+data:
+  base-url: http://daniel-cf-url.ngrok.io
+  runtime: |
+    apiVersion: codefresh.io/v1alpha1
+    kind: Runtime
+    metadata:
+      creationTimestamp: null
+      name: test-runtime
+      namespace: test-runtime
+    spec:
+      accessMode: TUNNEL
+      bootstrapSpecifier: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd
+      cluster: https://02FF82F519B4EC4C434DB5356D7FEF32.gr7.us-east-1.eks.amazonaws.com
+      components:
+      - name: events
+        type: kustomize
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-events?ref=0.1.15
+        wait: true
+      - name: rollouts
+        type: kustomize
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-rollouts?ref=0.1.15
+      - name: workflows
+        type: kustomize
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-workflows?ref=0.1.15
+      - name: app-proxy
+        syncWave: 9
+        type: kustomize
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/app-proxy?ref=0.1.15
+      - name: internal-router
+        syncWave: 10
+        type: kustomize
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/internal-router?ref=0.1.15
+      - name: sealed-secrets
+        type: kustomize
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/sealed-secrets?ref=0.1.15
+      - feature: ingressless
+        name: codefresh-tunnel-client
+        type: helm
+        url: github.com/codefresh-io/codefresh-tunnel-charts/codefresh-tunnel-client?ref=0.1.8
+      defVersion: null
+      ingressHost: https://638df65f68a3bdad76af8b3a-test-runtime.tunnels.cf-cd.com
+      ref: ""
+      repo: https://github.com/danielm-codefresh/test-ingressless
+      requiredCLIVersion: ^0.1.0
+      version: 0.1.15
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/managed-by: codefresh
+    codefresh.io/entity: runtimeDef
+  name: codefresh-cm
+  namespace: test-runtime
